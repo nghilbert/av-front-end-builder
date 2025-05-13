@@ -1,13 +1,26 @@
 // useRef is a hook used for DOM references
 // useEffect is a hook used for running side effects like initializing GrapesJS
 import React, { useEffect, useRef } from "react";
+
+//GrapesJS imports
 import grapesjs from "grapesjs";
 import "grapesjs/dist/css/grapes.min.css";
 import basicBlocks from "grapesjs-blocks-basic";
 import formsPlugin from "grapesjs-plugin-forms";
 import customCodePlugin from "grapesjs-custom-code";
-import { fetchBlocks } from "./blocks.js";
 
+// Local imports
+import { fetchBlocks } from "./blocks.js";
+import {
+  saveLocally,
+  downloadJSON,
+  downloadHTML,
+  downloadCSS,
+  downloadAll,
+  importJSON,
+} from "./editorUtils.js";
+
+// Create app
 const App = () => {
   // Initialize a reference to the the GrapesJS editor interface
   const editorRef = useRef(null);
@@ -51,27 +64,41 @@ const App = () => {
     return () => editor.destroy();
   }, []);
 
-  // Handles saving the current state to localStorage
-  const handleSave = () => {
-    const editor = editorRef.current;
-    if (editor) {
-      const json = {
-        components: editor.getComponents(),
-        style: editor.getCss(),
-      };
-      localStorage.setItem("touchpad-ui", JSON.stringify(json));
-      alert("Saved to localStorage");
-    }
-  };
-
-  // Render the save button and the editor container
+  // Render the buttons and the editor container
   return (
     <>
-      <button onClick={handleSave}>Save</button>
-      <div
-        ref={containerRef}
-        style={{ margin: "0 auto", display: "block" }}
-      ></div>
+      <div className="button-group">
+        <button onClick={() => saveLocally(editorRef.current)}>
+          Save Locally
+        </button>
+
+        <div className="dropdown">
+          <button className="dropdown-toggle">Download ▼</button>
+          <div className="dropdown-menu">
+            <button onClick={() => downloadJSON(editorRef.current)}>
+              JSON
+            </button>
+            <button onClick={() => downloadHTML(editorRef.current)}>
+              HTML
+            </button>
+            <button onClick={() => downloadCSS(editorRef.current)}>CSS</button>
+            <button onClick={() => downloadAll(editorRef.current)}>All</button>
+          </div>
+        </div>
+
+        <button onClick={() => document.getElementById("import-json").click()}>
+          Import JSON
+        </button>
+        <input
+          type="file"
+          accept=".json"
+          id="import-json"
+          style={{ display: "none" }}
+          onChange={(e) => importJSON(e, editorRef.current)}
+        />
+      </div>
+
+      <div ref={containerRef}></div>
     </>
   );
 };
