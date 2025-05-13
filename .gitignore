@@ -1,0 +1,17 @@
+# Dependency directory (auto-generated, never commit)
+node_modules/
+
+# Production build output
+dist/
+
+# Local environment variables (keep secrets out of Git)
+.env
+
+# Editor settings (keep your local setup private)
+.vscode/
+
+# Debug logs (only relevant for troubleshooting, not version control)
+npm-debug.log*
+
+# Vite or tool-specific cache
+.cache/
