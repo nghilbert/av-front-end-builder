@@ -7,7 +7,7 @@ import "grapesjs/dist/css/grapes.min.css";
 const App = () => {
   // Initialize a reference to the the GrapesJS editor interface
   const editorRef = useRef(null);
-  // Initialize a container to hold GrapesJS editor interface 
+  // Initialize a container to hold GrapesJS editor interface
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const App = () => {
     // Create an editor instance with GrapesJS
     const editor = grapesjs.init({
       // Renders inside this container
-      container: containerRef.current, 
+      container: containerRef.current,
       height: "100vh",
       width: "100vw",
       fromElement: false,
@@ -41,9 +41,6 @@ const App = () => {
       content: '<button class="my-button">Click me</button>',
     });
 
-    // Open the blocks panel on editor startup
-    editor.Commands.run("open-blocks");
-    
     // Save editor instance to editorRef
     editorRef.current = editor;
 
