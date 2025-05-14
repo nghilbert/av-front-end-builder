@@ -1,5 +1,5 @@
 // Handles saving the current state to localStorage (stored with JSON)
-export const saveLocally = (editor) => {
+export const save = (editor) => {
   if (!editor) return;
 
   // Define a variable for the HTML, CSS and components

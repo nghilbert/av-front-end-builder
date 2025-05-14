@@ -8,7 +8,7 @@ import customCodePlugin from "grapesjs-custom-code";
 // Local imports
 import { fetchBlocks } from "./blocks.js";
 import {
-  saveLocally,
+  save,
   downloadJSON,
   downloadHTML,
   downloadCSS,
@@ -36,10 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
       autoload: false,
     },
 
-    // Load saved or default components
-    fromElement: false,
-    components: saved ? JSON.parse(saved).components : "<h1>Edit me!</h1>",
-    style: saved ? JSON.parse(saved).style : "",
+    // I there is a saved file in localStorage, load it
+    if(saved) {
+      const data = JSON.parse(saved);
+      editor.setComponents(data.components);
+      editor.setStyle(data.styles);
+
+      // Reinject the global CSS (e.g. for body background)
+      const styleTag = document.createElement("style");
+      styleTag.innerHTML = data.css;
+      editor.Canvas.getDocument().head.appendChild(styleTag);
+    },
 
     // Add GrapesJS plugin components
     plugins: [basicBlocks, formsPlugin, customCodePlugin],
@@ -49,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchBlocks(editor);
 
   // Assign actions to each button
-  document.getElementById("save-btn").onclick = () => saveLocally(editor);
+  document.getElementById("save-btn").onclick = () => save(editor);
   document.getElementById("json-btn").onclick = () => downloadJSON(editor);
   document.getElementById("html-btn").onclick = () => downloadHTML(editor);
   document.getElementById("css-btn").onclick = () => downloadCSS(editor);
