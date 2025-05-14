@@ -1,24 +1,24 @@
-# AV Front-End Builder (Vite + React)
+# AV Front-End Builder (Vite + GrapesJS)
 
-A fast, modern AV control layout builder using React and GrapesJS.
+An AV control layout builder using GrapesJS, bundled with Vite.
 
 ## Getting Started
 
 1. Install dependencies:
 
-    npm install
+   npm install
 
 2. Start the development server:
 
-    npm run dev
+   npm run dev
 
 3. Open your browser to:
 
-    http://localhost:5173
+   http://localhost:5173
 
 ## Saving
 
-Project data is stored in your browser's localStorage under the key "touchpad-ui".
+Project data is stored in your browser's localStorage under the key `touchpad-ui`.
 
 ## Production Build
 
@@ -26,4 +26,6 @@ Project data is stored in your browser's localStorage under the key "touchpad-ui
 
 ## License
 
-All tools and dependencies are MIT-licensed and safe for commercial use.
+This project does not currently grant a license for the original source code.
+
+Third-party dependencies (including GrapesJS and Vite) are licensed under permissive open-source terms (MIT or BSD). See `LICENSES.md` for details.
