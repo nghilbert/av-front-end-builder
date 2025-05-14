@@ -24,10 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Create an editor instance with GrapesJS
   const editor = grapesjs.init({
-    // Set canvas to be the size of a standard touchpad
+    // Define the editor container
     container,
-    width: "1024px",
-    height: "600px",
 
     // Using localStorage for now. Auto save and auto load disabled
     storageManager: {

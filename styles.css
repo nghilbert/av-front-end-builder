@@ -1,13 +1,15 @@
 html,
 body {
-  background-color: #5c5c5c;
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #5c5c5c;
+  overflow: hidden;
 }
 
-/* Absolute-positioned button container */
+/* Top-left button group */
 .button-group {
   position: absolute;
   top: 1rem;
@@ -17,7 +19,7 @@ body {
   z-index: 1000;
 }
 
-/* Button styling */
+/* Buttons */
 button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -27,18 +29,15 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-
 button:hover {
   background-color: rgb(0, 70, 139);
 }
 
-/* Dropdown menu styling */
+/* Dropdown styles */
 .dropdown {
   position: relative;
   display: inline-block;
-  width: fit-content;
 }
-
 .dropdown-toggle {
   background-color: rgb(0, 80, 160);
   color: white;
@@ -46,7 +45,6 @@ button:hover {
   border: none;
   cursor: pointer;
 }
-
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -54,14 +52,11 @@ button:hover {
   left: 0;
   background-color: white;
   border: 1px solid #ccc;
-  width: 100%;
   z-index: 1001;
 }
-
 .dropdown:hover .dropdown-menu {
   display: block;
 }
-
 .dropdown-menu button {
   width: 100%;
   padding: 0.5rem;
@@ -71,21 +66,28 @@ button:hover {
   cursor: pointer;
   color: #000;
 }
-
 .dropdown-menu button:hover {
   background-color: #eee;
 }
 
-/* Center the editor */
+/* Wrapper takes full screen */
 .editor-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  width: 100vw;
+  display: flex;
 }
 
+/* Editor container fills wrapper */
 #editor-container {
-  width: 1024px;
-  height: 600px;
-  background-color: #fff;
+  flex: 1;
+  height: 100%;
+}
+
+/* Force canvas inside iframe to be 1024x600 */
+.gjs-cv-canvas {
+  width: 1024px !important;
+  height: 600px !important;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
