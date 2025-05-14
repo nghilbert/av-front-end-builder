@@ -13,11 +13,8 @@ const customBlocks = [
         value: "50",
         step: "1",
         class: "volume-slider",
-      },
-      style: {
-        writingMode: "bt-lr", // makes it vertical
-        WebkitAppearance: "slider-vertical", // for Chrome/Safari
-        appearance: "slider-vertical", // fallback for other browsers
+        style:
+          "writing-mode: bt-lr; -webkit-appearance: slider-vertical; appearance: slider-vertical; height: 300px;",
       },
     },
   },

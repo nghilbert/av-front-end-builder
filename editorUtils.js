@@ -10,8 +10,8 @@ export const saveLocally = (editor) => {
     css: editor.getCss(),
 
     //Get components
-    components: editor.getComponents(),
-    styles: editor.getStyle(),
+    components: editor.getComponents().map((c) => c.toJSON()),
+    style: editor.getStyle(),
   };
 
   /* Fetch layout and post to DJango model (commented out for now)
@@ -23,7 +23,7 @@ export const saveLocally = (editor) => {
   */
 
   // Save layoutData to localStorage
-  localStorage.setItem("Touchpanel_UI", JSON.stringify(layoutData));
+  localStorage.setItem("touchpad-ui", JSON.stringify(layoutData));
   alert("Saved to localStorage");
 };
 
@@ -37,7 +37,7 @@ export const downloadJSON = (editor) => {
     html: editor.getHtml(),
     css: editor.getCss(),
     components: editor.getComponents(),
-    styles: editor.getStyle(),
+    style: editor.getStyle(),
   };
 
   // Convert to JSON
@@ -86,15 +86,6 @@ export const downloadCSS = (editor) => {
   URL.revokeObjectURL(url);
 };
 
-// Download JSON, HTML, and CSS
-export const downloadAll = (editor) => {
-  if (!editor) return;
-
-  downloadJSON(editor);
-  downloadHTML(editor);
-  downloadCSS(editor);
-};
-
 //TODO: add comments
 export const importJSON = (event, editor) => {
   const file = event.target.files[0];
@@ -106,7 +97,7 @@ export const importJSON = (event, editor) => {
     try {
       const data = JSON.parse(reader.result);
       editor.setComponents(data.components);
-      editor.setStyle(data.styles);
+      editor.setStyle(data.style);
       alert("Layout imported!");
     } catch (err) {
       alert("Failed to import layout: " + err.message);
