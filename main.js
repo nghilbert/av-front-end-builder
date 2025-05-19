@@ -7,13 +7,7 @@ import customCodePlugin from "grapesjs-custom-code";
 
 // Local imports
 import { fetchBlocks } from "./blocks.js";
-import {
-  save,
-  downloadJSON,
-  downloadHTML,
-  downloadCSS,
-  importJSON,
-} from "./editorUtils.js";
+import { save, downloadJSON, importJSON } from "./editorUtils.js";
 
 // Start once the webpage has loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -56,8 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Assign actions to each button
   document.getElementById("save-btn").onclick = () => save(editor);
   document.getElementById("json-btn").onclick = () => downloadJSON(editor);
-  document.getElementById("html-btn").onclick = () => downloadHTML(editor);
-  document.getElementById("css-btn").onclick = () => downloadCSS(editor);
   document.getElementById("import-json").onchange = (e) =>
     importJSON(e, editor);
 });

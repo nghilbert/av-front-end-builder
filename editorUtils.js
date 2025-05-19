@@ -54,38 +54,6 @@ export const downloadJSON = (editor) => {
   URL.revokeObjectURL(url);
 };
 
-export const downloadHTML = (editor) => {
-  if (!editor) return;
-
-  // Get HTML
-  const html = editor.getHtml();
-  const blob = new Blob([html], { type: "text/html" });
-
-  // Make a download anchor from the blob
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "touchpanel_layout.html";
-  a.click();
-  URL.revokeObjectURL(url);
-};
-
-export const downloadCSS = (editor) => {
-  if (!editor) return;
-
-  // Get CSS
-  const css = editor.getCss();
-  const blob = new Blob([css], { type: "text/css" });
-
-  // Make a download anchor from the blob
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "touchpanel_layout.css";
-  a.click();
-  URL.revokeObjectURL(url);
-};
-
 //TODO: add comments
 export const importJSON = (event, editor) => {
   const file = event.target.files[0];
